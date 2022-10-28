@@ -1,10 +1,11 @@
 import requests
 
-def request(offset):
+
+def request(offset, bearer):
     headers = {
         'Accept': 'application/json',
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer BQBW7LUO3UZflGIuukeh0zrUdPvOTGfToemyXV8ep5j4w6XaBAEusedeFpx65V22SsBLUeAKeYbRzMfZn6VnXoCDgUMRiz4Xms6d725V0K0hD-bXZhveu901zqG9CgHEEPD8I2utyl-20bDCwsEwgeW1Kr_gDEMahpeEeqMCtayZugT1C-JiIUu4LA1V1-syXg',
+        'Authorization': f'Bearer {bearer}',
     }
 
     params = {
@@ -15,12 +16,17 @@ def request(offset):
 
     return response.json()
 
-items = request(0)['items']
 
-songs = []
+bearer = "BQBD_e4JRQWSQWDxDdvnrgzuyknwtIjuYrobLh5L4Qc7l72Ewzvn2-Q56yuxO2Q4ELMdGoJoQzJJHYG-HnwMjQmozqH2btvlHxoAKzh833LhmL0TO_fEhdB5h40msHTDRi1zIbLZJobskwoF-C40bTa9P7woIjOSqHPFmTkg1fxGQdymFHO8oi0NCtEA_FFdkmFvp8nny6al6mZT2ii5JxLaNQJi_9E"
 
-for song in items:
-    songs.append(song['track']['name'])
-    print(song['track']['name'])
+for i in range(0, 10000, 100):
+    items = request(i, bearer=bearer)['items']
+    songs = []
 
-print(len(songs))
+    if len(songs) == 100:
+        break
+    else:
+        for song in items:
+            songs.append(song['track']['name'])
+            print(song['track']['name'])
+
