@@ -13,7 +13,7 @@
 
 - After that add the **client ID** and the **client secret** in the authorization file. You can leave them hardcoded or set them up as env variables or store them in a DB, that's up to you. Also you can add a username for the authorize function.
  
-- After that just run the script using the following command:
+- Finally just run the script using the following command:
 
 `python main.py `
 
