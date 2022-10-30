@@ -17,5 +17,3 @@ def authorize():
 
     spotify = spotipy.Spotify(auth=token)
     return spotify
-
-
