@@ -17,7 +17,8 @@
 
 `python main.py `
 
-- It will ask for the main playlist ID and the test playlist ID. To get the ID  of a playlist just right click it, share, copy link to playlist. This will get you a full playlist link that looks like the following: \
+- It will ask for the main playlist ID and the test playlist ID. To get the ID  of a playlist just right click it, share, copy link to playlist. This will get you a full playlist link that looks like the following:
+
 `https://open.spotify.com/playlist/37i9dQZF1DWXRqgorJj26U?si=9f6A6U2jTk-njyZJ64rk3g`
 
 The playlist id is the string right after playlist/ and until the ?. 
