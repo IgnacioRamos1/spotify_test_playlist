@@ -15,3 +15,4 @@ The playlist id is the string right after playlist/ and until the ?.
 
 If you'd like to not have to input your playlist id everytime you can just leave them hardcoded in the script.
 
+The first time running the script it will open a new tab in your browser asking for authorization, press agree and it will start working.
