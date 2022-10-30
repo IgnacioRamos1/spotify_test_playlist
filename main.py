@@ -21,16 +21,17 @@ def request_playlist_tracks(playlist_id, offset):
 
 
 def get_songs(playlist_id):
-    songs = []
-    song = {}
+    songs = {}
+
     for i in range(0, 10000, 100):
         items = request_playlist_tracks(playlist_id, i)['items']
         if items != []:
             for item in items:
-                song['name'] = item['track']['name']
-                song['id'] = item['track']['id']
-                song['uri'] = item['track']['uri']
-                songs.append(song.copy())
+                songs[item['track']['id']] = {
+                                                "id": item['track']['id'],
+                                                "name": item['track']['name'],
+                                                "uri": item['track']['uri']
+                                                }
         else:
             break
     return songs
@@ -40,16 +41,41 @@ def check_for_duplicates(main_playlist_id, test_playlist_id):
     main_playlist_songs = get_songs(main_playlist_id)
     test_playlist_songs = get_songs(test_playlist_id)
 
+    main_song_id = []
+    test_song_id = []
     duplicates = []
-    duplicate_song = {}
 
-    for main_song in main_playlist_songs:
-        for test_song in test_playlist_songs:
-            if main_song['id'] == test_song['id']:
-                duplicate_song['name'] = test_song['name']
-                duplicate_song['id'] = test_song['id']
-                duplicate_song['uri'] = test_song['uri']
-                duplicates.append(duplicate_song.copy())
+    for info in main_playlist_songs.values():
+        main_song_id.append(info['id'])
+
+    for info in test_playlist_songs.values():
+        test_song_id.append(info['id'])
+
+    main_song_id.sort()
+    test_song_id.sort()
+
+    i = 0
+    j = 0
+
+    if len(main_song_id) > len(test_song_id):
+        while (j <= len(test_song_id) - 1):
+            if main_song_id[i] < test_song_id[j]:
+                i += 1
+            elif main_song_id[i] > test_song_id[j]:
+                j += 1
+            else:
+                duplicates.append(test_playlist_songs[test_song_id[j]])
+                i += 1
+    else:
+        while (i <= len(main_song_id) - 1):
+            if main_song_id[i] < test_song_id[j]:
+                i += 1
+            elif main_song_id[i] > test_song_id[j]:
+                j += 1
+            else:
+                duplicates.append(test_playlist_songs[test_song_id[j]])
+                i += 1
+
     return duplicates
 
 
@@ -59,3 +85,6 @@ def remove_duplicates(main_playlist_id, test_playlist_id):
         spotify.playlist_remove_all_occurrences_of_items(test_playlist_id, [duplicate['uri']])
         print(f"Removed {duplicate['name']}")
 
+
+if __name__ == "__main__":
+    remove_duplicates(main_playlist_id, test_playlist_id)
