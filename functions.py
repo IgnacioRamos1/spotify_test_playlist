@@ -73,9 +73,12 @@ def check_for_duplicates(main_playlist_id, test_playlist_id):
 
 def remove_duplicates(main_playlist_id, test_playlist_id):
     duplicates = check_for_duplicates(main_playlist_id, test_playlist_id)
+    counter = 0
     for duplicate in duplicates:
         spotify.playlist_remove_all_occurrences_of_items(test_playlist_id, [duplicate['uri']])
+        counter += 1
         print(f"Removed {duplicate['name']}")
+    print(f"Removed {counter} duplicates")
 
 
 def main():
