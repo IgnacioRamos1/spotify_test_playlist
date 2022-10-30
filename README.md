@@ -1,5 +1,5 @@
 
-# Automation of your Spotify testing playlist
+# Automation of Spotify testing playlist
 
 - I've always had a playlist for new music I was listening to that I didn't know if I would like it. And after finally deciding that it was good I would have to add it to my main playlist and delete it from my testing one. \
 - So I decided to make a program that would detect when a song was in both playlist and if so then delete it from your testing playlist automatically.
