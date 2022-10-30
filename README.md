@@ -7,16 +7,16 @@
 
 ## Usage
 
-- To run the script first install the requirements.txt using:
+- To run the script first install the requirements.txt using: \
 `pip install -r requirements.txt `
 
 - After that add the **client ID** and the **client secret** in the authorization file. You can leave them hardcoded or set them up as env variables or store them in a DB, that's up to you. Also you can add a username for the authorize function.
  
-- After that just run the script using the following command:
+- After that just run the script using the following command: \
 `python main.py `
 
 - It will ask for the main playlist ID and the test playlist ID. To get the ID  of a playlist just right click it, share, copy link to playlist. This will get you a full playlist link that looks like the following: \
-`https://open.spotify.com/playlist/37i9dQZF1DWXRqgorJj26U?si=9f6A6U2jTk-njyZJ64rk3g` \
+`https://open.spotify.com/playlist/37i9dQZF1DWXRqgorJj26U?si=9f6A6U2jTk-njyZJ64rk3g`
 
 The playlist id is the string right after playlist/ and until the ?. 
 
